@@ -312,7 +312,7 @@ def start(update: Update, context: CallbackContext):
         first = update.effective_user.full_name
         chat = update.effective_chat.title
         update.effective_message.reply_video(
-                video="https://telegra.ph/file/eedea672a770ec92363bd.jpg",
+                video="https://te.legra.ph/file/e6ad885589f3d7d612294.mp4",
                 caption="Oɪ Oɪ Oɪ, I'ᴍ Aʟɪᴠᴇ Aɴᴅ Wᴏʀᴋɪɴɢ Fɪɴᴇ. \nCʜᴇᴄᴋ Oᴜᴛ Tʜᴇ Bᴜᴛᴛᴏɴs Mᴇɴᴛɪᴏɴᴇᴅ Bᴇʟᴏᴡ.",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
