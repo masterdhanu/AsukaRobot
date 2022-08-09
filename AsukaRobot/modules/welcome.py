@@ -214,7 +214,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Sudos
             elif new_mem.id in DRAGONS:
                 update.effective_message.reply_photo(
-                Asuka, caption= "Huh! An Evangalion Pilot Joined Your Chat",
+                Asuka, caption= "Huh! Commander Joined Your Chat",
                     reply_to_message_id=reply,
                 )
                 continue
@@ -222,7 +222,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Support
             elif new_mem.id in DEMONS:
                 update.effective_message.reply_photo(
-                Asuka, caption= "Huh! Someone with a Evangelion 3.0 level just joined!",
+                Asuka, caption= "Huh! Someone with Vice Commander level just joined!",
                     reply_to_message_id=reply,
                 )
                 continue
@@ -255,11 +255,11 @@ def new_member(update: Update, context: CallbackContext):
                 [
                   [                  
                        InlineKeyboardButton(
-                             text="Support",
-                             url=f"https://t.me/AsukaSupport"),
+                             text="Sᴜᴘᴘᴏʀᴛ",
+                             url=f"https://t.me/HANMA_SHUJI_0"),
                        InlineKeyboardButton(
-                             text="Kaizuryu",
-                             url="https://t.me/TheKaizuryu")
+                             text="Vᴀʟʜᴀʟʟᴀ Nᴇᴛᴡᴏʀᴋ ",
+                             url="https://t.me/Valhalla_Network")
                      ],
                      [                  
                        InlineKeyboardButton(
