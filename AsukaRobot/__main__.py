@@ -295,8 +295,8 @@ def start(update: Update, context: CallbackContext):
             first_name = update.effective_user.full_name
             id = update.effective_user.id
 
-            update.effective_message.reply_photo(
-                photo=(PM_PHOTO),
+            update.effective_message.reply_video(
+                video="https://te.legra.ph/file/e6ad885589f3d7d612294.mp4",
                 caption=PM_START_TEXT.format(
                     escape_markdown(first_name),
                     escape_markdown(uptime),
