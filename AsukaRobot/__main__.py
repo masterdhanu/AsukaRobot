@@ -63,32 +63,36 @@ PM_START_TEXT = """
 *Hey B!tch {},*
 *Myself 𝗔𝘀𝘂𝗸𝗮 𝗟𝗮𝗻𝗴𝗹𝗲𝘆 𝗦𝗼𝗿𝘆𝘂, Pilot On Evangelion Unit-02 As Well As A Powerful Group Management Bot.*
 
-❍ *EVA Unit - 02*
-❍ *Uptime* - {}
-❍ *Python Version* - {}
-
 *Hit The The Help Button To Get List Of My Commands.××*
 
-*• @AsukaRobot Powered By* [𝗞𝗮𝗶𝘇𝘂𝗿𝘆𝘂](https://t.me/TheKaizuryu)
+
+*• Powered By* [Vᴀʟʜᴀʟʟᴀ Nᴇᴛᴡᴏʀᴋ](https://t.me/Valhalla_network)
+
 """
+
+
+
+
+
+
 
 buttons = [
     [
                         InlineKeyboardButton(
-                             text="➕️ Add Asuka To Your Chat ➕️",
-                             url="https://t.me/AsukaRobot?startgroup=true"),
+                             text="➕️ ×Aᴅᴅ Hᴀɴᴍᴀ Sʜᴜᴊɪ Tᴏ Yᴏᴜʀ Cʜᴀᴛ× ➕️",
+                             url="https://t.me/Hanma_Shuji_Sbot?startgroup=true"),
                     ],
                    [
                        InlineKeyboardButton(
-                             text="Kaizuryu",
-                             url="https://t.me/TheKaizuryu"),
+                             text="Oᴡɴᴇʀ",
+                             url="https://t.me/SID_HANMA"),
                        InlineKeyboardButton(
-                             text="About Asuka",
-                             callback_data="asuka_"),
+                             text="×Aʙᴏᴜᴛ Hᴀɴᴍᴀ×",
+                             callback_data="hanma_"),
                    ],
                   [
                         InlineKeyboardButton(
-                             text="Help & Cmds ❔",
+                             text="×Hᴇʟᴘ Aɴᴅ Cᴍᴅs×",
                              callback_data="help_back"),
                     ],
     ]
@@ -151,7 +155,7 @@ Asuka_IMG = (
       "https://telegra.ph/file/3c6cb9b50381170c95278.jpg",
 )
 
-TEXXT = "Yes B!tch, I Am Alive And Working Fine.\nCheck Out The Buttons Mentioned Below.",
+TEXXT = "Oɪ Oɪ Oɪ, I'ᴍ Aʟɪᴠᴇ Aɴᴅ Wᴏʀᴋɪɴɢ Fɪɴᴇ.\nCʜᴇᴄᴋ Oᴜᴛ Tʜᴇ Bᴜᴛᴛᴏɴs Mᴇɴᴛɪᴏɴᴇᴅ Bᴇʟᴏᴡ.",
 
 Asuka_N_IMG = (
       "https://telegra.ph/file/0b5e88c90238c357641a7.jpg",
@@ -166,7 +170,7 @@ Asuka_PIC = "https://telegra.ph/file/eedea672a770ec92363bd.jpg"
 
 Asuka_VID = "https://telegra.ph/file/8d49b6f49362e7778785e.jpg"
 
-PM_PHOTO = "https://telegra.ph/file/fefd65c0e2ccb00453407.jpg"
+PM_PHOTO = "https://te.legra.ph/file/de03454cc183816f91b7c.mp4"
 
 Asuka_DISPACHER_PIC = "https://telegra.ph/file/d03f381c8178a8fd2dc27.jpg"
 
@@ -308,18 +312,18 @@ def start(update: Update, context: CallbackContext):
         first = update.effective_user.full_name
         chat = update.effective_chat.title
         update.effective_message.reply_video(
-                video="https://telegra.ph/file/c49829f9f5d65947cbc7e.mp4",
-                caption="Yes B!tch, I Am Alive And Working Fine. \nCheck Out The Buttons Mentioned Below.",
+                video="https://telegra.ph/file/eedea672a770ec92363bd.jpg",
+                caption="Oɪ Oɪ Oɪ, I'ᴍ Aʟɪᴠᴇ Aɴᴅ Wᴏʀᴋɪɴɢ Fɪɴᴇ. \nCʜᴇᴄᴋ Oᴜᴛ Tʜᴇ Bᴜᴛᴛᴏɴs Mᴇɴᴛɪᴏɴᴇᴅ Bᴇʟᴏᴡ.",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [
                   [
                        InlineKeyboardButton(
                              text="Support",
-                             url="t.me/AsukaSupport"),
+                             url="t.me/HANMAxSUPPORT_0"),
                        InlineKeyboardButton(
                              text="Updates",
-                             url="t.me/AsukaUpdates")
+                             url="t.me/HanmaUpdates")
                      ]
                 ]
             ),
