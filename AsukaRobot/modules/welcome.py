@@ -69,8 +69,8 @@ VERIFIED_USER_WAITLIST = {}
 
 Asuka_IMG = "https://te.legra.ph/file/84afb878ad3022bbbd167.mp4"
 Asuka = "https://te.legra.ph/file/b6a695e99b9bc6c2caf8b.mp4"
-Asuka_VID = "https://telegra.ph/file/d7ffd1eae2984b0cfb148.jpg"
-WAIFUS_IMG = ""
+Asuka_VID = "https://te.legra.ph/file/e6ad885589f3d7d612294.mp4"
+WAIFUS_IMG = "https://te.legra.ph/file/e6ad885589f3d7d612294.mp4"
 
 
 # do not async
@@ -196,7 +196,7 @@ def new_member(update: Update, context: CallbackContext):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_video(
-                Asuka_IMG, caption= "Behold!!! Owner Of @AsukaRobot Joined Your Chat.",
+                Asuka_IMG, caption= "Behold!!! Owner Of @Valhalla_network Joined Your Chat.",
                     reply_to_message_id=reply)
                 welcome_log = (f"{html.escape(chat.title)}\n"
                                f"#USER_JOINED\n"
@@ -206,7 +206,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Devs
             elif new_mem.id in DEV_USERS:
                 update.effective_message.reply_text(
-                    "Whoa! An Evengalion Master Joined Your Chat",
+                    "Whoa! Manager Joined Your Chat",
                     reply_to_message_id=reply,
                 )
                 continue
