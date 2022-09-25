@@ -23,7 +23,6 @@ Credit = "Xelcius"
 
 
 @register(pattern="^/mmf ?(.*)")
-
 async def handler(event):
 
     if event.fwd_from:
@@ -48,25 +47,22 @@ async def handler(event):
 
     msg = await event.reply("```Memifying this image! ```")
 
-    if "Xelcius" in Credit:
-       pass
-
-    else: 
-       await event.reply("This nigga removed credit line from code")
+    if "Xelcius" not in Credit:
+        await event.reply("This nigga removed credit line from code")
 
 
     text = str(event.pattern_match.group(1)).strip()
 
-    if len(text) < 1:
+    if not text:
 
         return await msg.reply("You might want to try `/mmf text`")
 
     meme = await drawText(file, text)
 
     await bot.send_file(event.chat_id, file=meme, force_document=False)
-    
+
     await msg.delete() 
-    
+
     os.remove(meme)
 
 
@@ -80,14 +76,7 @@ async def drawText(image_path, text):
 
     i_width, i_height = img.size
 
-    if os.name == "nt":
-
-        fnt = "ariel.ttf"
-
-    else:
-
-        fnt = "./AsukaRobot/resources/default.ttf"
-
+    fnt = "ariel.ttf" if os.name == "nt" else "./AsukaRobot/resources/default.ttf"
     m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
 
     if ";" in text:

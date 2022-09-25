@@ -298,39 +298,35 @@ def mediainfo(media):
 
 @register(pattern="^/logo ?(.*)")
 async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id == OWNER_ID:
-     pass
- else:
-
-  if not quew:
-     await event.reply('Please Gimmie A Text For The Logo.')
-     return
- pesan = await event.reply('Logo In A Process. Please Wait.')
- try:
-    text = event.pattern_match.group(1)
-    randc = random.choice(LOGO_LINKS)
-    img = Image.open(io.BytesIO(requests.get(randc).content))
-    draw = ImageDraw.Draw(img)
-    image_widthz, image_heightz = img.size
-    pointsize = 500
-    fillcolor = "black"
-    shadowcolor = "blue"
-    fnt = glob.glob("./AsukaRobot/resources/Vampire Wars.otf")
-    randf = random.choice(fnt)
-    font = ImageFont.truetype(randf, 120)
-    w, h = draw.textsize(text, font=font)
-    h += int(h*0.21)
-    image_width, image_height = img.size
-    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
-    x = (image_widthz-w)/2
-    y = ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="white", stroke_width=1, stroke_fill="black")
-    fname = "Asuka.png"
-    img.save(fname, "png")
-    await telethn.send_file(event.chat_id, file=fname, caption = f"Made by @{BOT_USERNAME}")         
-    await pesan.delete()
-    if os.path.exists(fname):
-            os.remove(fname)
- except Exception as e:
-    await event.reply(f'Error, Report @{SUPPORT_CHAT}, {e}')
+    quew = event.pattern_match.group(1)
+    if event.sender_id != OWNER_ID and not quew:
+        await event.reply('Please Gimmie A Text For The Logo.')
+        return
+    pesan = await event.reply('Logo In A Process. Please Wait.')
+    try:
+       text = event.pattern_match.group(1)
+       randc = random.choice(LOGO_LINKS)
+       img = Image.open(io.BytesIO(requests.get(randc).content))
+       draw = ImageDraw.Draw(img)
+       image_widthz, image_heightz = img.size
+       pointsize = 500
+       fillcolor = "black"
+       shadowcolor = "blue"
+       fnt = glob.glob("./AsukaRobot/resources/Vampire Wars.otf")
+       randf = random.choice(fnt)
+       font = ImageFont.truetype(randf, 120)
+       w, h = draw.textsize(text, font=font)
+       h += int(h*0.21)
+       image_width, image_height = img.size
+       draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
+       x = (image_widthz-w)/2
+       y = ((image_heightz-h)/2+6)
+       draw.text((x, y), text, font=font, fill="white", stroke_width=1, stroke_fill="black")
+       fname = "Asuka.png"
+       img.save(fname, "png")
+       await telethn.send_file(event.chat_id, file=fname, caption = f"Made by @{BOT_USERNAME}")         
+       await pesan.delete()
+       if os.path.exists(fname):
+               os.remove(fname)
+    except Exception as e:
+       await event.reply(f'Error, Report @{SUPPORT_CHAT}, {e}')

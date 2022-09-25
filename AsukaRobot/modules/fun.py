@@ -143,12 +143,10 @@ def pat(update: Update, context: CallbackContext):
     args = context.args
     message = update.effective_message
 
-    reply_to = message.reply_to_message if message.reply_to_message else message
+    reply_to = message.reply_to_message or message
 
     curr_user = html.escape(message.from_user.first_name)
-    user_id = extract_user(message, args)
-
-    if user_id:
+    if user_id := extract_user(message, args):
         patted_user = bot.get_chat(user_id)
         user1 = curr_user
         user2 = html.escape(patted_user.first_name)
@@ -187,10 +185,12 @@ def roll(update: Update, context: CallbackContext):
 def shout(update: Update, context: CallbackContext):
     args = context.args
     text = " ".join(args)
-    result = []
-    result.append(' '.join(list(text)))
-    for pos, symbol in enumerate(text[1:]):
-        result.append(symbol + ' ' + '  ' * pos + symbol)
+    result = [' '.join(list(text))]
+    result.extend(
+        f'{symbol} ' + '  ' * pos + symbol
+        for pos, symbol in enumerate(text[1:])
+    )
+
     result = list("\n".join(result))
     result[0] = text[0]
     result = "".join(result)
@@ -248,9 +248,12 @@ def sex(update: Update, context: CallbackContext):
 @run_async
 def hemtai(update: Update, context: CallbackContext):
     reply_photo = update.effective_message.reply_to_message.reply_photo if update.effective_message.reply_to_message else update.effective_message.reply_photo
-    reply_photo(photo="https://telegra.ph/file/a01a331e69ab69158482e.jpg", caption=f"• Heyy Pervert!!! Join Below •", 
-    reply_markup=InlineKeyboardMarkup(henbuttons),
-    parse_mode=ParseMode.MARKDOWN,)
+    reply_photo(
+        photo="https://telegra.ph/file/a01a331e69ab69158482e.jpg",
+        caption="• Heyy Pervert!!! Join Below •",
+        reply_markup=InlineKeyboardMarkup(henbuttons),
+        parse_mode=ParseMode.MARKDOWN,
+    )
 
 @run_async
 def animec(update: Update, context: CallbackContext):

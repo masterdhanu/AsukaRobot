@@ -7,7 +7,7 @@ from AsukaRobot.utils.errors import capture_err
 __mod_name__ = "Github"
 
 
-@pbot.on_message(filters.command(["github", "git", f"git@AsukaRobot"]))
+@pbot.on_message(filters.command(["github", "git", "git@AsukaRobot"]))
 @capture_err
 async def github(_, message):
     if len(message.command) != 2:
@@ -45,6 +45,5 @@ async def github(_, message):
 **Followers:** `{followers}`
 **Following:** `{following}`"""
             except Exception as e:
-                print(str(e))
-                pass
+                print(e)
     await message.reply_photo(photo=avatar_url, caption=caption)

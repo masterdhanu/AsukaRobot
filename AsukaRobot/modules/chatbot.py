@@ -26,12 +26,10 @@ from AsukaRobot.modules.log_channel import gloggable
 def kukirm(update: Update, context: CallbackContext) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
-    match = re.match(r"rm_chat\((.+?)\)", query.data)
-    if match:
-        user_id = match.group(1)
+    if match := re.match(r"rm_chat\((.+?)\)", query.data):
+        user_id = match[1]
         chat: Optional[Chat] = update.effective_chat
-        is_kuki = sql.rem_kuki(chat.id)
-        if is_kuki:
+        if is_kuki := sql.rem_kuki(chat.id):
             is_kuki = sql.rem_kuki(user_id)
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
@@ -40,9 +38,10 @@ def kukirm(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Asuka Chat Bot Disabled by {}.".format(mention_html(user.id, user.first_name)),
+                f"Asuka Chat Bot Disabled by {mention_html(user.id, user.first_name)}.",
                 parse_mode=ParseMode.HTML,
             )
+
 
     return ""
 
@@ -52,12 +51,10 @@ def kukirm(update: Update, context: CallbackContext) -> str:
 def kukiadd(update: Update, context: CallbackContext) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
-    match = re.match(r"add_chat\((.+?)\)", query.data)
-    if match:
-        user_id = match.group(1)
+    if match := re.match(r"add_chat\((.+?)\)", query.data):
+        user_id = match[1]
         chat: Optional[Chat] = update.effective_chat
-        is_kuki = sql.set_kuki(chat.id)
-        if is_kuki:
+        if is_kuki := sql.set_kuki(chat.id):
             is_kuki = sql.set_kuki(user_id)
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
@@ -66,9 +63,10 @@ def kukiadd(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Asuka Chat Bot Enabled By {}.".format(mention_html(user.id, user.first_name)),
+                f"Asuka Chat Bot Enabled By {mention_html(user.id, user.first_name)}.",
                 parse_mode=ParseMode.HTML,
             )
+
 
     return ""
 
@@ -111,7 +109,7 @@ def chatbot(update: Update, context: CallbackContext):
     is_kuki = sql.is_kuki(chat_id)
     if not is_kuki:
         return
-	
+
     if message.text and not message.document:
         if not kuki_message(context, message):
             return

@@ -60,8 +60,9 @@ def gmute(update, context):
             message.reply_text("This user is already gmuted; I'd change the reason, but you haven't given me one...")
             return
 
-        success = sql.update_gmute_reason(user_id, user_chat.username or user_chat.first_name, reason)
-        if success:
+        if success := sql.update_gmute_reason(
+            user_id, user_chat.username or user_chat.first_name, reason
+        ):
             message.reply_text("This user is already gmuted; I've gone and updated the gmute reason though!")
         else:
             message.reply_text("I thought this person was gmuted.")
@@ -106,11 +107,9 @@ def gmute(update, context):
                 pass
             elif excp.message == "Method is available only for supergroups":
                 pass
-            elif excp.message == "Can't demote chat creator":
-                pass
-            else:
+            elif excp.message != "Can't demote chat creator":
                 message.reply_text("Unexpected Error!")
-                context.bot.send_message(ERROR_DUMP, "Could not gmute due to: {}".format(excp.message))
+                context.bot.send_message(ERROR_DUMP, f"Could not gmute due to: {excp.message}")
                 sql.ungmute_user(user_id)
                 return
         except TelegramError:
@@ -140,7 +139,7 @@ def ungmute(update, context):
 
     muter = update.effective_user  # type: Optional[User]
 
-    message.reply_text("I'll let {} speak again, globally.".format(user_chat.first_name))
+    message.reply_text(f"I'll let {user_chat.first_name} speak again, globally.")
 
 
     chats = get_all_chats()
@@ -181,11 +180,9 @@ def ungmute(update, context):
                 pass
             elif excp.message == "Channel_private":
                 pass
-            elif excp.message == "Chat_admin_required":
-                pass
-            else:
+            elif excp.message != "Chat_admin_required":
                 message.reply_text("Unexpected Error!")
-                bot.send_message(ERROR_DUMP, "Could not un-gmute due to: {}".format(excp.message))
+                bot.send_message(ERROR_DUMP, f"Could not un-gmute due to: {excp.message}")
                 return
         except TelegramError:
             pass
@@ -205,9 +202,9 @@ def gmutelist(update, context):
 
     mutefile = 'Screw these guys.\n'
     for user in muted_users:
-        mutefile += "[x] {} - {}\n".format(user["name"], user["user_id"])
+        mutefile += f'[x] {user["name"]} - {user["user_id"]}\n'
         if user["reason"]:
-            mutefile += "Reason: {}\n".format(user["reason"])
+            mutefile += f'Reason: {user["reason"]}\n'
 
     with BytesIO(str.encode(mutefile)) as output:
         output.name = "gmutelist.txt"
@@ -225,21 +222,27 @@ def check_and_mute(update, user_id, should_message=True):
 @run_async
 def enforce_gmute(update, context):
     # Not using @restrict handler to avoid spamming - just ignore if cant gmute.
-    if sql.does_chat_gmute(update.effective_chat.id) and update.effective_chat.get_member(context.bot.id).can_restrict_members:
-        user = update.effective_user  # type: Optional[User]
-        chat = update.effective_chat  # type: Optional[Chat]
-        msg = update.effective_message  # type: Optional[Message]
+    if (
+        not sql.does_chat_gmute(update.effective_chat.id)
+        or not update.effective_chat.get_member(
+            context.bot.id
+        ).can_restrict_members
+    ):
+        return
+    user = update.effective_user  # type: Optional[User]
+    chat = update.effective_chat  # type: Optional[Chat]
+    msg = update.effective_message  # type: Optional[Message]
 
+    if user and not is_user_admin(chat, user.id):
+        check_and_mute(update, user.id, should_message=True)
+    if msg.new_chat_members:
+        new_members = update.effective_message.new_chat_members
+        for mem in new_members:
+            check_and_mute(update, mem.id, should_message=True)
+    if msg.reply_to_message:
+        user = msg.reply_to_message.from_user  # type: Optional[User]
         if user and not is_user_admin(chat, user.id):
             check_and_mute(update, user.id, should_message=True)
-        if msg.new_chat_members:
-            new_members = update.effective_message.new_chat_members
-            for mem in new_members:
-                check_and_mute(update, mem.id, should_message=True)
-        if msg.reply_to_message:
-            user = msg.reply_to_message.from_user  # type: Optional[User]
-            if user and not is_user_admin(chat, user.id):
-                check_and_mute(update, user.id, should_message=True)
 
 @run_async
 @user_admin
@@ -255,11 +258,9 @@ def gmutestat(update, context):
             update.effective_message.reply_text("I've disabled gmutes in this group. GMutes wont affect your users "
                                                 "anymore. You'll be less protected from Anirudh though!")
     else:
-        update.effective_message.reply_text("Give me some arguments to choose a setting! on/off, yes/no!\n\n"
-                                            "Your current setting is: {}\n"
-                                            "When True, any gmutes that happen will also happen in your group. "
-                                            "When False, they won't, leaving you at the possible mercy of "
-                                            "spammers.".format(sql.does_chat_gmute(update.effective_chat.id)))
+        update.effective_message.reply_text(
+            f"Give me some arguments to choose a setting! on/off, yes/no!\n\nYour current setting is: {sql.does_chat_gmute(update.effective_chat.id)}\nWhen True, any gmutes that happen will also happen in your group. When False, they won't, leaving you at the possible mercy of spammers."
+        )
 
 
 
@@ -276,7 +277,7 @@ def __user_info__(user_id):
         text = text.format("Yes")
         user = sql.get_gmuted_user(user_id)
         if user.reason:
-            text += "\nReason: {}".format(html.escape(user.reason))
+            text += f"\nReason: {html.escape(user.reason)}"
     else:
         text = text.format("No")
     return text

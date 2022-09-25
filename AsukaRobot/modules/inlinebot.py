@@ -49,58 +49,6 @@ def inlinequery(update: Update, _) -> None:
     user = update.effective_user
 
     results: List = []
-    inline_help_dicts = [
-        {
-            "title": "Hentai",
-            "description": "Get Hentai And Pornhwa Channel Link",
-            "message_text": "Click the button below to get the links.",
-            "thumb_urL": "https://telegra.ph/file/2466b0d2e524b8d47a73d.jpg",
-            "keyboard": ".hentai",
-        },
-         {
-            "title": "Anime Cruise",
-            "description": "Get Anime Channel Link",
-            "message_text": "Click the button below to get the links.",
-            "thumb_urL": "https://telegra.ph/file/941e6d601c37c3ddf2925.jpg",
-            "keyboard": ".anime",
-        },
-        {
-            "title": "Asuka",
-            "description": "AsukaRobot Inline",
-            "message_text": "Click the button below to get the Asuka Inline.",
-            "thumb_urL": "https://telegra.ph/file/93b575c4c4da42d9fa4b2.jpg",
-            "keyboard": ".asuka",
-        },
-        {
-            "title": "Kaizuryu",
-            "description": "The Kaizuryu",
-            "message_text": "Click the button below to get the Kaizuryu Network Info.",
-            "thumb_urL": "https://telegra.ph/file/5daac1fcf88ca6f177ef4.jpg",
-            "keyboard": ".kaizuryu",
-        },
-        {
-            "title": "Account info on Asuka",
-            "description": "Look up a Telegram account in Asuka database",
-            "message_text": "Click the button below to look up a person in Asuka database using their Telegram ID",
-            "thumb_urL": "https://telegra.ph/file/3c93a66c6751088a00fbd.jpg",
-            "keyboard": ".info",
-        },
-        {
-            "title": "Help",
-            "description": "Help Inline Commands",
-            "message_text": "Click the button below to get Help Of Inline Commands.",
-            "thumb_urL": "https://telegra.ph/file/645e0b5ca6382d6d73ab5.jpg",
-            "keyboard": ".help",
-        },
-        {
-            "title": "Anilist",
-            "description": "Search anime and manga on AniList.co",
-            "message_text": "Click the button below to search anime and manga on AniList.co",
-            "thumb_urL": "https://telegra.ph/file/ace91d9ae6af3881d3940.jpg",
-            "keyboard": ".anilist",
-        },
-    ]
-
     inline_funcs = {
         ".info": inlineinfo,
         ".hentai": hentai,
@@ -114,6 +62,58 @@ def inlinequery(update: Update, _) -> None:
     if (f := query.split(" ", 1)[0]) in inline_funcs:
         inline_funcs[f](remove_prefix(query, f).strip(), update, user)
     else:
+        inline_help_dicts = [
+            {
+                "title": "Hentai",
+                "description": "Get Hentai And Pornhwa Channel Link",
+                "message_text": "Click the button below to get the links.",
+                "thumb_urL": "https://telegra.ph/file/2466b0d2e524b8d47a73d.jpg",
+                "keyboard": ".hentai",
+            },
+             {
+                "title": "Anime Cruise",
+                "description": "Get Anime Channel Link",
+                "message_text": "Click the button below to get the links.",
+                "thumb_urL": "https://telegra.ph/file/941e6d601c37c3ddf2925.jpg",
+                "keyboard": ".anime",
+            },
+            {
+                "title": "Asuka",
+                "description": "AsukaRobot Inline",
+                "message_text": "Click the button below to get the Asuka Inline.",
+                "thumb_urL": "https://telegra.ph/file/93b575c4c4da42d9fa4b2.jpg",
+                "keyboard": ".asuka",
+            },
+            {
+                "title": "Kaizuryu",
+                "description": "The Kaizuryu",
+                "message_text": "Click the button below to get the Kaizuryu Network Info.",
+                "thumb_urL": "https://telegra.ph/file/5daac1fcf88ca6f177ef4.jpg",
+                "keyboard": ".kaizuryu",
+            },
+            {
+                "title": "Account info on Asuka",
+                "description": "Look up a Telegram account in Asuka database",
+                "message_text": "Click the button below to look up a person in Asuka database using their Telegram ID",
+                "thumb_urL": "https://telegra.ph/file/3c93a66c6751088a00fbd.jpg",
+                "keyboard": ".info",
+            },
+            {
+                "title": "Help",
+                "description": "Help Inline Commands",
+                "message_text": "Click the button below to get Help Of Inline Commands.",
+                "thumb_urL": "https://telegra.ph/file/645e0b5ca6382d6d73ab5.jpg",
+                "keyboard": ".help",
+            },
+            {
+                "title": "Anilist",
+                "description": "Search anime and manga on AniList.co",
+                "message_text": "Click the button below to search anime and manga on AniList.co",
+                "thumb_urL": "https://telegra.ph/file/ace91d9ae6af3881d3940.jpg",
+                "keyboard": ".anilist",
+            },
+        ]
+
         for ihelp in inline_help_dicts:
             results.append(
                 article(
@@ -195,11 +195,10 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
         nation_level_present = True
 
     if nation_level_present:
-        text += ' [<a href="https://t.me/{}?start=nations">?</a>]'.format(bot.username)
+        text += f' [<a href="https://t.me/{bot.username}?start=nations">?</a>]'
 
     try:
-        spamwtc = sw.get_ban(int(user.id))
-        if spamwtc:
+        if spamwtc := sw.get_ban(int(user.id)):
             text += "<b>\n\n• SpamWatched:\n</b> Yes"
             text += f"\n• Reason: <pre>{spamwtc.reason}</pre>"
             text += "\n• Appeal at @SpamWatchSupport"
@@ -218,17 +217,16 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
         [
             [
                 InlineKeyboardButton(
-                    text="Report Error",
-                    url=f"https://t.me/AsukaSupport",
+                    text="Report Error", url="https://t.me/AsukaSupport"
                 ),
                 InlineKeyboardButton(
                     text="Search again",
                     switch_inline_query_current_chat=".info ",
                 ),
-
-            ],
+            ]
         ]
-        )
+    )
+
 
     results = [
         InlineQueryResultArticle(
@@ -253,26 +251,23 @@ def hentai(query: str, update: Update, context: CallbackContext) -> None:
     about_text = f"""
     • [Hentai Forever](https://t.me/+S6Kq1YC5bxkwZjgx) \n• [Pornhwa Heaven](https://t.me/+jKF-knaR0LE5MzYx) \n• [Hentai Chat Group](https://t.me/+TOAvpiqpUeoxMzdh)
     """
-    results: list = []
     kb = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    text="Hentai",
-                    url=f"https://t.me/+S6Kq1YC5bxkwZjgx",
-                ),
-
+                    text="Hentai", url="https://t.me/+S6Kq1YC5bxkwZjgx"
+                )
             ],
             [
                 InlineKeyboardButton(
-                    text="Pornhwa",
-                    url=f"https://t.me/+jKF-knaR0LE5MzYx",
-                ),
-
+                    text="Pornhwa", url="https://t.me/+jKF-knaR0LE5MzYx"
+                )
             ],
-        ])
+        ]
+    )
 
-    results.append(
+
+    results: list = [
         InlineQueryResultPhoto(
             id=str(uuid4()),
             title="Hentai",
@@ -283,7 +278,8 @@ def hentai(query: str, update: Update, context: CallbackContext) -> None:
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=kb,
         )
-    )
+    ]
+
     update.inline_query.answer(results)
     
 def asuka(query: str, update: Update, context: CallbackContext) -> None:
@@ -292,40 +288,36 @@ def asuka(query: str, update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
     user = context.bot.get_chat(user_id)
     sql.update_user(user.id, user.username)
-    about_text = f"""
+    about_text = """
     ──── • Asuka Langley Soryu • ────
     """
-    results: list = []
+
     kb = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    text="Asuka Robot",
-                    url=f"https://t.me/AsukaRobot",
-                ),
-
+                    text="Asuka Robot", url="https://t.me/AsukaRobot"
+                )
             ],
             [
                 InlineKeyboardButton(
-                    text="Support",
-                    url=f"https://t.me/AsukaSupport",
+                    text="Support", url="https://t.me/AsukaSupport"
                 ),
-                 InlineKeyboardButton(
-                    text="Updates",
-                    url=f"https://t.me/AsukaUpdates",
+                InlineKeyboardButton(
+                    text="Updates", url="https://t.me/AsukaUpdates"
                 ),
-
             ],
             [
                 InlineKeyboardButton(
                     text="Try Inline",
                     switch_inline_query_current_chat="",
                 ),
-
             ],
-        ])
+        ]
+    )
 
-    results.append(
+
+    results: list = [
         InlineQueryResultPhoto(
             id=str(uuid4()),
             title="Asuka",
@@ -336,7 +328,8 @@ def asuka(query: str, update: Update, context: CallbackContext) -> None:
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=kb,
         )
-    )
+    ]
+
     update.inline_query.answer(results)
 
 MEDIA_QUERY = '''query ($search: String) {
@@ -405,7 +398,7 @@ def media_query(query: str, update: Update, context: CallbackContext) -> None:
                 description = description or "N/A"
 
             if len((str(description))) > 700:
-                description = description [0:700] + "....."
+                description = f"{description[:700]}....."
 
             avgsc = data.get("averageScore") or "N/A"
             status = data.get("status") or "N/A"
@@ -492,7 +485,6 @@ def help(query: str, update: Update, context: CallbackContext) -> None:
     help_text = f"""
      [Asuka Inline Help](https://t.me/AsukaRobot)\n*Inline Help Commands:*\n*• .hentai:* `You Can Get Hentai Links`\n*• .kaizuryu* `To Check Out Kaizuryu Network`\n*• .anilist:* `To Search Animes And Mangas`\n*• .info:* `To Check Your Information`\n• Want your own inline on @AsukaRobot? You can get it in low pricing by contacting @Xelcius
      """
-    results: list = []
     kb = InlineKeyboardMarkup(
         [
             [
@@ -504,7 +496,7 @@ def help(query: str, update: Update, context: CallbackContext) -> None:
             ],
         ])
 
-    results.append(
+    results: list = [
         InlineQueryResultPhoto(
             id=str(uuid4()),
             title="Help Commands",
@@ -514,7 +506,8 @@ def help(query: str, update: Update, context: CallbackContext) -> None:
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=kb,
         )
-    )
+    ]
+
     update.inline_query.answer(results)
 
 @pgram.on_callback_query(filters.regex("pingCB"))
@@ -529,10 +522,10 @@ def _netcat(host, port, update: Update, context: CallbackContext):
     s.sendall(content.encode())
     s.shutdown(socket.SHUT_WR)
     while True:
-        data = s.recv(4096).decode("utf-8").strip("\n\x00")
-        if not data:
+        if data := s.recv(4096).decode("utf-8").strip("\n\x00"):
+            return data
+        else:
             break
-        return data
     s.close()
     
 def kaizuryu(query: str, update: Update, context: CallbackContext) -> None:
@@ -541,29 +534,27 @@ def kaizuryu(query: str, update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
     user = context.bot.get_chat(user_id)
     sql.update_user(user.id, user.username)
-    about_text = f"""
+    about_text = """
     ──── • The Kaizuryu Network • ────
     """
-    results: list = []
+
     kb = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    text="Kaizuryu Network",
-                    url=f"https://t.me/TheKaizuryu",
-                ),
-
+                    text="Kaizuryu Network", url="https://t.me/TheKaizuryu"
+                )
             ],
             [
                 InlineKeyboardButton(
-                    text="Chat Group",
-                    url=f"https://t.me/+RH-EofbQPhwyNGE1",
-                ),
-
+                    text="Chat Group", url="https://t.me/+RH-EofbQPhwyNGE1"
+                )
             ],
-        ])
+        ]
+    )
 
-    results.append(
+
+    results: list = [
         InlineQueryResultPhoto(
             id=str(uuid4()),
             title="Kaizuryu",
@@ -574,7 +565,8 @@ def kaizuryu(query: str, update: Update, context: CallbackContext) -> None:
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=kb,
         )
-    )
+    ]
+
     update.inline_query.answer(results)
     
 def anime(query: str, update: Update, context: CallbackContext) -> None:
@@ -586,26 +578,23 @@ def anime(query: str, update: Update, context: CallbackContext) -> None:
     about_text = f"""
     ‣ Anime Cruise • Kaizuryu \n\n• Uploading All The Latest Animes \n• Best Quality, Low Size Encoded \n• One Tap Channel Access
     """
-    results: list = []
     kb = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    text="Join Now",
-                    url=f"https://t.me/Anime_Cruise",
-                ),
-
+                    text="Join Now", url="https://t.me/Anime_Cruise"
+                )
             ],
             [
                 InlineKeyboardButton(
-                    text="Index",
-                    url=f"https://t.me/Cruise_Index",
-                ),
-
+                    text="Index", url="https://t.me/Cruise_Index"
+                )
             ],
-        ])
+        ]
+    )
 
-    results.append(
+
+    results: list = [
         InlineQueryResultPhoto(
             id=str(uuid4()),
             title="Anime",
@@ -616,5 +605,6 @@ def anime(query: str, update: Update, context: CallbackContext) -> None:
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=kb,
         )
-    )
+    ]
+
     update.inline_query.answer(results)
