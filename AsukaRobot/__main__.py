@@ -58,7 +58,7 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 *Hey B!tch {},*
-*Myself 𝗔𝘀𝘂𝗸𝗮 𝗟𝗮𝗻𝗴𝗹𝗲𝘆 𝗦𝗼𝗿𝘆𝘂, Pilot On Evangelion Unit-02 As Well As A Powerful Group Management Bot.*
+*Myself Shinchan , Pilot On Evangelion Unit-02 As Well As A Powerful Group Management Bot.*
 
 ❍ *EVA Unit - 02*
 ❍ *Uptime* - {}
@@ -66,21 +66,21 @@ PM_START_TEXT = """
 
 *Hit The The Help Button To Get List Of My Commands.××*
 
-*• @AsukaRobot Powered By* [𝗞𝗮𝗶𝘇𝘂𝗿𝘆𝘂](https://t.me/TheKaizuryu)
+*• @ShinchanProRobot Powered By* [Ａｎｉｍｅ ｃｌｕｂ](https://t.me/AnimeClubNetwork)
 """
 
 buttons = [
     [
                         InlineKeyboardButton(
-                             text="➕️ Add Asuka To Your Chat ➕️",
-                             url="https://t.me/AsukaRobot?startgroup=true"),
+                             text="➕️ Add Shinchan To Your Chat ➕️",
+                             url="https://t.me/ShinchanProRobot?startgroup=true"),
                     ],
                    [
                        InlineKeyboardButton(
-                             text="Kaizuryu",
-                             url="https://t.me/TheKaizuryu"),
+                             text="Ａｎｉｍｅ ｃｌｕｂ",
+                             url="https://t.me/AnimeClubNetwork"),
                        InlineKeyboardButton(
-                             text="About Asuka",
+                             text="About Shinchan",
                              callback_data="asuka_"),
                    ],
                   [
@@ -95,18 +95,18 @@ ABOUT1 = """
 """
 
 ABOUT2 = """
-*‣ Asuka Support Chats*\nJoin My Support Group/Channel For Reporting Problems And Updates On @AsukaRobot.
+*‣ Asuka Support Chats*\nJoin My Support Group/Channel For Reporting Problems And Updates On @ShinchanbanLogs
 """
 
 REPO_TXT = """
 *‣ Owner:*
-• [Xelcius](t.me/xelcius)
+• [धनु भैया](t.me/master_dhanu)
 \n*‣ Note:*
 • If You Want This Bot's Repo You Can Get It From The Button Below.
-• Report Any Kind Of Bugs At [Support](t.me/AsukaSupport)
+• Report Any Kind Of Bugs At [Support](https://t.me/ShinchanRobotSupport)
 """
 
-ABOUT3 = """Hello [{}], My name is *Asuka Langley Soryu*. A Powerful Telegram Group Management Bot built to help you manage Group easily.
+ABOUT3 = """Hello [{}], My name is *Shinchan Nohara*. A Powerful Telegram Group Management Bot built to help you manage Group easily.
             \n ‣ I can Restrict Users.
             \n ‣ I can Greet Users with customizable welcome message and even set a group rules
             \n ‣ I have an advanced Anti-Flood System which will help you to safe group from Spammmer.
@@ -117,7 +117,7 @@ ABOUT3 = """Hello [{}], My name is *Asuka Langley Soryu*. A Powerful Telegram Gr
             \n\n*If you have any Question, You can join Support Chat. My Developer Team will Answer. Check Support Button Below*"""
 
 HELP_STRINGS = """
-Hey [{}] *Asuka* here!
+Hey [{}] *Shinchan* here!
 I Help Admins To Manage Their Groups!
 Main commands available :
  ‣ /help: PM's you this message.
@@ -130,7 +130,7 @@ For all command use / or !
 """
 
 ACRUISE = """
-💫 𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 @Anime_Cruise !!!
+💫 𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 @AnimeClubNetwork !!!
 
 • 𝐔𝐩𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐀𝐥𝐥 𝐋𝐚𝐭𝐞𝐬𝐭 𝐀𝐧𝐢𝐦𝐞𝐬.
 • 𝐇𝐢𝐠𝐡 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 𝐀𝐧𝐢𝐦𝐞, 𝐋𝐨𝐰 𝐒𝐢𝐳𝐞.
@@ -141,33 +141,33 @@ ACRUISE = """
 """
 
 Asuka_IMG = (
-      "https://telegra.ph/file/645e0b5ca6382d6d73ab5.jpg",
-      "https://telegra.ph/file/3c6cb9b50381170c95278.jpg",
-      "https://telegra.ph/file/4e964395ea9138c943dce.jpg",
-      "https://telegra.ph/file/6e6a21dda7dd3525f7f94.jpg",
-      "https://telegra.ph/file/3c6cb9b50381170c95278.jpg",
+      "https://telegra.ph/file/83bc768b5926fc81d7d1e.jpg",
+      "https://telegra.ph/file/14cc5cefd436cb6a706fc.jpg",
+      "https://telegra.ph/file/e3b3289b556a68610cf13.jpg",
+      "https://telegra.ph/file/2447efa46295c25dc8f99.jpg",
+      "https://telegra.ph/file/cea2894eb58099eb88940.jpg",
 )
 
 TEXXT = "Yes B!tch, I Am Alive And Working Fine.\nCheck Out The Buttons Mentioned Below.",
 
 Asuka_N_IMG = (
-      "https://telegra.ph/file/0b5e88c90238c357641a7.jpg",
-      "https://telegra.ph/file/3c93a66c6751088a00fbd.jpg",
-      "https://telegra.ph/file/3b4eed00be4dfaa189fff.jpg",
-      "https://telegra.ph/file/6cbc8452a2796ad58c2f9.jpg",
-      "https://telegra.ph/file/3c6cb9b50381170c95278.jpg"
+      "https://telegra.ph/file/cea2894eb58099eb88940.jpg",
+      "https://telegra.ph/file/2447efa46295c25dc8f99.jpg",
+      "https://telegra.ph/file/e3b3289b556a68610cf13.jpg",
+      "https://telegra.ph/file/14cc5cefd436cb6a706fc.jpg",
+      "https://telegra.ph/file/83bc768b5926fc81d7d1e.jpg"
 
 )
 
-Asuka_PIC = "https://telegra.ph/file/eedea672a770ec92363bd.jpg"
+Asuka_PIC = "https://telegra.ph/file/cea2894eb58099eb88940.jpg"
 
-Asuka_VID = "https://telegra.ph/file/8d49b6f49362e7778785e.jpg"
+Asuka_VID = "https://telegra.ph/file/01258fa1d17b3204c5fb4.mp4"
 
-PM_PHOTO = "https://telegra.ph/file/fefd65c0e2ccb00453407.jpg"
+PM_PHOTO = "https://telegra.ph/file/14cc5cefd436cb6a706fc.jpg"
 
-Asuka_DISPACHER_PIC = "https://telegra.ph/file/d03f381c8178a8fd2dc27.jpg"
+Asuka_DISPACHER_PIC = "https://telegra.ph/file/e3b3289b556a68610cf13.jpg"
 
-DONATE_STRING = """ Adding Me To Your Groups Is Donation For Me Though I Would Appreciate If You Join My Creator's Network @TheKaizuryu"""
+DONATE_STRING = """ Adding Me To Your Groups Is Donation For Me Though I Would Appreciate If You Join My Creator's Network @AnimeaclubNetwork"""
 
 MIGRATEABLE = []
 HELPABLE = {}
@@ -180,7 +180,7 @@ USER_SETTINGS = {}
 
 IMPORTED = {}
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module(f"AsukaRobot.modules.{module_name}")
+    imported_module = importlib.import_module(f"Shinchan Nohara.modules.{module_name}")
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -302,7 +302,7 @@ def start(update: Update, context: CallbackContext):
         first = update.effective_user.full_name
         chat = update.effective_chat.title
         update.effective_message.reply_video(
-                video="https://telegra.ph/file/c49829f9f5d65947cbc7e.mp4",
+                video="https://telegra.ph/file/01258fa1d17b3204c5fb4.mp4",
                 caption="Yes B!tch, I Am Alive And Working Fine. \nCheck Out The Buttons Mentioned Below.",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
@@ -485,7 +485,7 @@ def asuka_callback_data(update, context):
     query = update.callback_query
     bot = context.bot
     uptime = get_readable_time((time.time() - StartTime))
-    if query.data == "asuka_":
+    if query.data == "Shinchan_":
         query.message.edit_caption(
             ABOUT3.format(update.effective_user.first_name, update.effective_user.id, escape_markdown(context.bot.first_name)),
             parse_mode=ParseMode.MARKDOWN,
@@ -505,7 +505,7 @@ def asuka_callback_data(update, context):
                 ]
             ),
         )
-    elif query.data == "asuka_back":
+    elif query.data == "Shinchan_back":
         id = update.effective_user.id
         first_name = update.effective_user.full_name
         query.message.edit_caption(
@@ -559,7 +559,7 @@ def get_help(update: Update, context: CallbackContext):
                     [
                         InlineKeyboardButton(
                             text=" Click here",
-                            url="https://t.me/AsukaRobot?start=help",
+                            url="https://t.me/Shinchanprorobot?start=help",
                         )
                     ]
                 ]
@@ -767,7 +767,7 @@ def donate(update: Update, context: CallbackContext):
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True)
 
-        if OWNER_ID != 5132611794 and DONATION_LINK:
+        if OWNER_ID != 1749188073 and DONATION_LINK:
             update.effective_message.reply_text(
                 f"You can also donate to the person currently running me [here]({DONATION_LINK})",
                 parse_mode=ParseMode.MARKDOWN,
@@ -828,7 +828,7 @@ def main():
         )
         except Unauthorized:
             LOGGER.warning(
-                "Asuka can't able to send message to support_chat, go and check!")
+                "Shinchan can't able to send message to support_chat, go and check!")
         except BadRequest as e:
             LOGGER.warning(e.message)
 
